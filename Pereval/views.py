@@ -71,7 +71,7 @@ class PerevalUpdateViewset(viewsets.ModelViewSet):
     queryset = PerevalAdded.objects.all().order_by('id')
     serializer_class = PerevalSerializer
 
-    def partial_update(self, request, *args, **kwargs):
+    def pereval_update(self, request, *args, **kwargs):
 
         pereval = self.get_object()
         serializer = PerevalSerializer(pereval, data=request.data, partial=True)
@@ -80,19 +80,19 @@ class PerevalUpdateViewset(viewsets.ModelViewSet):
             if serializer.is_valid():
                 serializer.save()
                 response_data = {
-                    'status': 1,
+                    'state': 1,
                     'message': 'Данные успешно изменены',
                 }
                 return Response(response_data, status=status.HTTP_200_OK)
             else:
                 response_data = {
-                    'status': 0,
+                    'state': 0,
                     'message': 'Данные о пользователе нельзя изменять',
                 }
                 return Response(response_data, status=status.HTTP_403_FORBIDDEN)
         else:
             response_data = {
-                'status': 0,
+                'state': 0,
                 'message': 'Изменение отклонено. Данные проходят проверку модератором',
             }
             return Response(response_data, status=status.HTTP_451_UNAVAILABLE_FOR_LEGAL_REASONS)
