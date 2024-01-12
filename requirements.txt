@@ -2,3 +2,4 @@ Django
 django-filter
 djangorestframework
 pillow
+drf_writable_nested
