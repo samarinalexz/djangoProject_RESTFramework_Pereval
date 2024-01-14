@@ -17,7 +17,12 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 
+from djangoProject.yasg import doc_urls
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('Pereval.urls')),
+    path('docs/', include('rest_framework.urls')),
 ]
+
+urlpatterns += doc_urls
