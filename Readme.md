@@ -156,9 +156,13 @@ ______
 
 _______
 
-***Проект опубликован на хостинге pythonanywhere.com***
+***Проект опубликован на двух хостингах: pythonanywhere.com и beget.com***
 
-*API **Pereval**: http:///*<br/>
-*Документация **swagger**: https:///<br/>*
+*API **Pereval на pythonanywhere.com**: http://samarinalex.pythonanywhere.com/perevals/<br/>*
+*Документация **swagger на pythonanywhere.com**: https://samarinalex.pythonanywhere.com/swagger/<br/>*
+*Документация **redoc на pythonanywhere.com**: http://samarinalex.pythonanywhere.com/redoc/<br/>*
+*API **Pereval на beget.com**: http://samariut.beget.tech/perevals/<br/>*
+*Документация **swagger на beget.com**: https://ssamariut.beget.tech/swagger/<br/>*
+*Документация **redoc на beget.com**: http://samariut.beget.tech/redoc/<br/>*
 
 ______
