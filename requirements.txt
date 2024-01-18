@@ -4,3 +4,4 @@ djangorestframework
 pillow
 drf_writable_nested
 drf-yasg
+django-ckeditor

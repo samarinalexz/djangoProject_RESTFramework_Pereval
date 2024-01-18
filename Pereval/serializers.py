@@ -22,11 +22,12 @@ class LevelSerializer(serializers.ModelSerializer):
 
 
 class ImageSerializer(serializers.ModelSerializer):
-    data = serializers.URLField()
+    image = serializers.URLField()
+    date_added = serializers.DateTimeField(format='%Y-%m-%d %H:%M:%S', read_only=True)
 
     class Meta:
         model = Image
-        fields = ['title', 'data', ]
+        fields = ['title', 'date_added']
 
 
 class PerevalSerializer(WritableNestedModelSerializer):
@@ -35,7 +36,7 @@ class PerevalSerializer(WritableNestedModelSerializer):
     user = UserSerializer()
     coord = CoordinateSerializer()
     level = LevelSerializer(allow_null=True, default=False)
-    images = ImageSerializer(many=True)
+    images = ImageSerializer(many=True, required=False)
 
     class Meta:
 
@@ -59,9 +60,9 @@ class PerevalSerializer(WritableNestedModelSerializer):
         pereval = PerevalAdded.objects.create(**validated_data, user=user, level=level, coord=coord)
 
         for img in images:
+            image = img.pop('image')
             title = img.pop('title')
-            data = img.pop('data')
-            Image.objects.create(title=title, data=data, pereval=pereval)
+            Image.objects(image=image, pereval=pereval, title=title)
 
         return pereval
 
