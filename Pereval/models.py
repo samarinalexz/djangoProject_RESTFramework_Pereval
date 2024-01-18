@@ -1,5 +1,6 @@
 from django.db import models
 from .services import get_level, get_status, get_new_status
+from ckeditor.fields import RichTextField
 
 
 class User(models.Model):
@@ -72,14 +73,6 @@ class PerevalAdded(models.Model):
 
 
 class Image(models.Model):
-
-    title = models.CharField(max_length=255, verbose_name='Название', null=True, blank=True)
-    data = models.ImageField(verbose_name='Изображение', null=True, blank=True)
-    pereval = models.ForeignKey(PerevalAdded, related_name='images', on_delete=models.CASCADE)
-
-    def __str__(self):
-        return f'{self.title}'
-
-    class Meta:
-        verbose_name = "Фото"
-        verbose_name_plural = "Фото"
+    pereval = models.ForeignKey(PerevalAdded, on_delete=models.CASCADE, related_name='images', null=True, blank=True)
+    title = models.CharField(max_length=200, verbose_name='Название изображения', null=True, blank=True)
+    date_added = models.DateTimeField(auto_now_add=True, blank=True, null=True, verbose_name='Дата добавления')
